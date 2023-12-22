@@ -1,0 +1,18 @@
+version: "3.9"
+
+services: 
+  app:
+    # Builds the docker file inside our current directory.
+    build:
+      context: .
+      args:
+        - DEV=true
+      # Port mapping
+    ports: 
+      - "8000:8000"
+      # mapping directory from the system to  the container.
+    volumes: 
+      - ./app:/app
+      # Command used for running the service
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
