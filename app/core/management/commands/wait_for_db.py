@@ -3,7 +3,7 @@ Django command to wait for the database to be available.
 """
 import time
 
-from psycopg2 import OperationalError as Psycopg2Error
+from psycopg2 import OperationalError as Psycopg2OpError
 
 from django.db.utils import OperationalError
 
@@ -16,7 +16,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         """Entry point for command"""
         self.stdout.write('waiting for database')
-        dp_up = False
+        db_up = False
         while db_up is False:
             try:
                 self.check(databases=['default'])
