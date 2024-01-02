@@ -21,12 +21,12 @@ class Command(BaseCommand):
         db_conn = None
         while not db_conn:
             try:
-                
+
                 db_conn = connections['default']
                 db_conn = True
-                
-            except (Psycopg2OpError,OperationalError):
-                
+
+            except (Psycopg2OpError, OperationalError):
+
                 self.stdout.write('Database Unavailable, waiting 1 sec...')
                 time.sleep(1)
 

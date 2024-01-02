@@ -2,8 +2,9 @@ from unittest.mock import patch
 from django.core.management import call_command
 from django.test import SimpleTestCase
 from django.db.utils import OperationalError
-from psycopg2 import OperationalError as Psycopg2OpError
-import time
+from psycopg2 import OperationalError as Psycopg2OpError  # noqa: F401
+import time  # noqa: F401
+
 
 class CommandTests(SimpleTestCase):
     """Test commands here."""
