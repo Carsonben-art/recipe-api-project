@@ -397,7 +397,7 @@ class PrivateRecipeAPITests(TestCase):
         s3 = RecipeSerializer(r3)
         self.assertIn(s1.data, res.data)
         self.assertIn(s2.data, res.data)
-        self.assertIn(s3.data, res.data)
+        self.assertNotIn(s3.data, res.data)
 
     def test_filter_by_ingredients(self):
         """Test filtering by ingredients."""
@@ -418,13 +418,6 @@ class PrivateRecipeAPITests(TestCase):
         self.assertIn(s1.data, res.data)
         self.assertIn(s2.data, res.data)
         self.assertNotIn(s3.data, res.data)
-
-
-
-
-
-
-
 
 
 class ImageUploadTests(TestCase):
