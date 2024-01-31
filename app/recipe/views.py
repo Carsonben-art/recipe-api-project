@@ -23,6 +23,8 @@ from core.models import (
     Ingredient,
 )
 from recipe import serializers
+
+
 @extend_schema_view(
     list=extend_schema(
         parameters=[
@@ -39,8 +41,6 @@ from recipe import serializers
         ]
     )
 )
-
-
 class RecipeViewSet(viewsets.ModelViewSet):
     """View for manage recipe APIs."""
     serializer_class = serializers.RecipeDetailSerializer
@@ -105,7 +105,6 @@ class RecipeViewSet(viewsets.ModelViewSet):
         ]
     )
 )
-
 class BaseRecipeAttrViewSet(mixins.DestroyModelMixin,
                             mixins.UpdateModelMixin,
                             mixins.ListModelMixin,

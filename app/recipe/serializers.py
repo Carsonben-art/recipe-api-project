@@ -1,7 +1,7 @@
 """
 Serializers for recipe APIs.
 """
-from rest_framework import  serializers
+from rest_framework import serializers
 
 from core.models import (
     Recipe,
@@ -84,10 +84,8 @@ class RecipeSerializer(serializers.ModelSerializer):
             instance.ingredients.clear()
             self._get_or_create_ingredients(ingredients, instance)
 
-
-
         for attr, value in validated_data.items():
-            setattr(instance,attr, value)
+            setattr(instance, attr, value)
 
         instance.save()
         return instance

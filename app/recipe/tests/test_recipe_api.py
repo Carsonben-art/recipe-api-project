@@ -105,7 +105,6 @@ class PrivateRecipeAPITests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
 
-
     def test_get_recipe_detail(self):
         """Test get recipe detail."""
         recipe = create_recipe(user=self.user)
@@ -136,8 +135,8 @@ class PrivateRecipeAPITests(TestCase):
         original_link = 'https://example.com/recipe.pdf'
         recipe = create_recipe(
             user=self.user,
-                title='Sample recipe title',
-                link=original_link,
+            title='Sample recipe title',
+            link=original_link,
         )
 
         payload = {'title': 'New recipe title'}
@@ -213,7 +212,7 @@ class PrivateRecipeAPITests(TestCase):
             'title': 'Egg Curry',
             'time_minutes': 30,
             'price': Decimal('2.50'),
-            'tags': [{'name':'Eggs'}, {'name': 'Dinner'}]
+            'tags': [{'name': 'Eggs'}, {'name': 'Dinner'}]
         }
         res = self.client.post(RECIPES_URL, payload, format='json')
 
@@ -246,7 +245,7 @@ class PrivateRecipeAPITests(TestCase):
         recipe = recipes[0]
         self.assertEqual(recipe.tags.count(), 2)
         self.assertIn(tag_indian, recipe.tags.all())
-        for tag in payload ['tags']:
+        for tag in payload['tags']:
             exists = recipe.tags.filter(
                 name=tag['name'],
                 user=self.user,
@@ -299,7 +298,7 @@ class PrivateRecipeAPITests(TestCase):
             'title': 'Cauliflower Tacos',
             'time_minutes': 60,
             'price': Decimal('4.30'),
-            'ingredients': [{'name': 'Cauliflower'},{'name': 'Salt'}],
+            'ingredients': [{'name': 'Cauliflower'}, {'name': 'Salt'}],
         }
         res = self.client.post(RECIPES_URL, payload, format='json')
 
@@ -425,7 +424,7 @@ class ImageUploadTests(TestCase):
 
     def setUp(self):
         self.client = APIClient()
-        self.user =get_user_model().objects.create_user(
+        self.user = get_user_model().objects.create_user(
             'user@example.com',
             'password123',
         )
@@ -437,7 +436,7 @@ class ImageUploadTests(TestCase):
 
     def test_upload_image(self):
         """Test uploading an image to a recipe."""
-        url =  image_upload_url(self.recipe.id)
+        url = image_upload_url(self.recipe.id)
         with tempfile.NamedTemporaryFile(suffix='.jpg') as image_file:
             img = Image.new('RGB', (10, 10))
             img.save(image_file, format='JPEG')
